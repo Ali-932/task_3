@@ -7,6 +7,7 @@ import '../Models/Booklist.dart';
 import 'package:get/get.dart';
 
 import '../Models/Reviews.dart';
+import '../Services/reviews_remote.dart';
 import '../controllers/Book_controller.dart';
 import '../controllers/Book_list_controller.dart';
 import '../controllers/Review_controller.dart';
@@ -288,9 +289,8 @@ class Book_page extends StatelessWidget {
                                             padding: const EdgeInsets.only(top: 15),
                                             child: TextButton(
                                                 onPressed: () {
-                                                  print(ReviewC.BookRating());
                                                   ReviewC.Totalratings.value+=ReviewC.rating.value;
-                                                  ReviewC.reviews.add(Reviews(
+                                                  ReviewC.AddReviews(Reviews(
                                                       body: ReviewC
                                                           .body_controller.text,
                                                       title: ReviewC
@@ -303,6 +303,7 @@ class Book_page extends StatelessWidget {
                                                           .title_controller.text,
                                                       rating: ReviewC.rating.value));
                                                   book.rating.value=ReviewC.BookRating();
+
                                                   Get.snackbar("Add review",
                                                       "${book.bookName} review has been added",
                                                       icon: const Icon(Icons.reviews,
